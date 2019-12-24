@@ -34,8 +34,10 @@ $(document).ready(function(){
 	 
 	 
     $('#newCard').click(function(){
-        resetUsedNumbersArray();
-        init();
+        if(confirm("Are you sure you want a new card?")){
+            resetUsedNumbersArray();
+            init();
+        }
     });
 	 
     $('td').click(function(){
