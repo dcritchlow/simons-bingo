@@ -17,7 +17,6 @@ $(document).ready(function(){
         base = baseArray[i] * 15;
         number = base + Math.floor(Math.random()*15)+1;
 		 
-		 
         if(usedArray[number] != true){
             $('#cell'+i).html(number);
             usedArray[number] = true;
@@ -37,14 +36,29 @@ $(document).ready(function(){
         if(confirm("Are you sure you want a new card?")){
             resetUsedNumbersArray();
             init();
+            clearBoard();
         }
     });
 	 
     $('td').click(function(){
-		
         var toggle = this.style;
         toggle.backgroundColor = toggle.backgroundColor? "":"#333";
         toggle.color = toggle.color? "":"#fff";
     });
 
+    function clearBoard(){
+        var trs = $('table tr');
+        for(var i=0; i < trs.length; i++){
+            var cells = trs[i].cells;
+            for(var j=0; j < cells.length; j++){
+                var style = cells[j].style;
+                var selected = style.backgroundColor == "rgb(51, 51, 51)"
+                if(selected){
+                    style.backgroundColor = "";
+                    style.color = style.color? "":"#fff";
+                }
+                
+            }
+        }
+    }
 });
